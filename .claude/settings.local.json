@@ -6,7 +6,8 @@
       "Bash(gh:*)",
       "Bash(git push:*)",
       "Bash(git remote set-url:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
     ],
     "deny": [],
     "ask": []
