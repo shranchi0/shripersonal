@@ -5,7 +5,8 @@
       "Bash(gh repo create:*)",
       "Bash(gh:*)",
       "Bash(git push:*)",
-      "Bash(git remote set-url:*)"
+      "Bash(git remote set-url:*)",
+      "Bash(git add:*)"
     ],
     "deny": [],
     "ask": []
