@@ -11,80 +11,14 @@
             margin: 40px;
             line-height: 1.5;
         }
-        .clocks {
-            margin: 30px 0;
-        }
-        .clock {
-            margin-bottom: 20px;
-        }
     </style>
 </head>
 <body>
     <h1>Shri Kolanukuduru</h1>
     <p>I'm a Partner at <a href="https://categoryvc.com">Category</a>, where I invest in and support early-stage engineer-founders.</p>
     
-    <div class="clocks">
-        <div class="clock">
-            <pre>SF:    <span id="sf-time">--:--</span>   ┌─────────┐
-              │  12  1  │
-              │11     2 │
-              │10  ●  3 │
-              │ 9     4 │
-              │  8  7 6 │
-              └─────────┘</pre>
-        </div>
-        
-        <div class="clock">
-            <pre>NY:    <span id="ny-time">--:--</span>   ┌─────────┐
-              │  12  1  │
-              │11     2 │
-              │10  ●  3 │
-              │ 9     4 │
-              │  8  7 6 │
-              └─────────┘</pre>
-        </div>
-        
-        <div class="clock">
-            <pre>LON:   <span id="lon-time">--:--</span>   ┌─────────┐
-              │  12  1  │
-              │11     2 │
-              │10  ●  3 │
-              │ 9     4 │
-              │  8  7 6 │
-              └─────────┘</pre>
-        </div>
-        
-        <div class="clock">
-            <pre>Tokyo: <span id="tokyo-time">--:--</span>   ┌─────────┐
-              │  12  1  │
-              │11     2 │
-              │10  ●  3 │
-              │ 9     4 │
-              │  8  7 6 │
-              └─────────┘</pre>
-        </div>
-    </div>
-    
     <a href="mailto:shri@categoryvc.com">Email</a> | 
     <a href="https://www.linkedin.com/in/shriyansh/">LinkedIn</a> | 
     <a href="https://x.com/_shriyanshk">X</a>
-    
-    <script>
-        function updateClocks() {
-            const now = new Date();
-            
-            document.getElementById('sf-time').textContent = 
-                now.toLocaleTimeString('en-US', {timeZone: 'America/Los_Angeles', hour12: false});
-            document.getElementById('ny-time').textContent = 
-                now.toLocaleTimeString('en-US', {timeZone: 'America/New_York', hour12: false});
-            document.getElementById('lon-time').textContent = 
-                now.toLocaleTimeString('en-GB', {timeZone: 'Europe/London', hour12: false});
-            document.getElementById('tokyo-time').textContent = 
-                now.toLocaleTimeString('ja-JP', {timeZone: 'Asia/Tokyo', hour12: false});
-        }
-        
-        updateClocks();
-        setInterval(updateClocks, 1000);
-    </script>
 </body>
 </html>
