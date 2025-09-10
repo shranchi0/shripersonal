@@ -15,34 +15,35 @@
             min-height: 100vh;
         }
         .ticker {
-            background-color: #000;
-            color: #f6e9d2;
+            background-color: transparent;
+            color: #000;
             white-space: nowrap;
             overflow: hidden;
             box-sizing: border-box;
             padding: 10px 0;
             position: fixed;
-            top: 0;
+            top: 72px;
             left: 0;
             width: 100%;
             z-index: 1000;
+            border-top: 1px solid #000;
+            border-bottom: 1px solid #000;
         }
         .ticker-content {
             display: inline-block;
-            padding-left: 100%;
-            animation: scroll 30s linear infinite;
+            animation: scroll 20s linear infinite;
         }
         @keyframes scroll {
-            0% { transform: translate3d(100%, 0, 0); }
-            100% { transform: translate3d(-100%, 0, 0); }
+            0% { transform: translate3d(0%, 0, 0); }
+            100% { transform: translate3d(-50%, 0, 0); }
         }
         .main-content {
-            margin-top: 60px;
+            margin-top: 140px;
             padding: 40px;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: calc(100vh - 60px);
+            min-height: calc(100vh - 140px);
         }
         .content {
             text-align: left;
@@ -55,7 +56,7 @@
 <body>
     <div class="ticker">
         <div class="ticker-content" id="ticker-content">
-            SF: <span id="sf-time">--:--:--</span> • NY: <span id="ny-time">--:--:--</span> • LON: <span id="lon-time">--:--:--</span> • TOKYO: <span id="tokyo-time">--:--:--</span>
+            SF: <span id="sf-time">--:--:--</span> • NY: <span id="ny-time">--:--:--</span> • LON: <span id="lon-time">--:--:--</span> • TOKYO: <span id="tokyo-time">--:--:--</span> • SF: <span id="sf-time-2">--:--:--</span> • NY: <span id="ny-time-2">--:--:--</span> • LON: <span id="lon-time-2">--:--:--</span> • TOKYO: <span id="tokyo-time-2">--:--:--</span>
         </div>
     </div>
     
@@ -76,14 +77,19 @@
         function updateTicker() {
             const now = new Date();
             
-            document.getElementById('sf-time').textContent = 
-                now.toLocaleTimeString('en-US', {timeZone: 'America/Los_Angeles', hour12: false});
-            document.getElementById('ny-time').textContent = 
-                now.toLocaleTimeString('en-US', {timeZone: 'America/New_York', hour12: false});
-            document.getElementById('lon-time').textContent = 
-                now.toLocaleTimeString('en-GB', {timeZone: 'Europe/London', hour12: false});
-            document.getElementById('tokyo-time').textContent = 
-                now.toLocaleTimeString('ja-JP', {timeZone: 'Asia/Tokyo', hour12: false});
+            const sfTime = now.toLocaleTimeString('en-US', {timeZone: 'America/Los_Angeles', hour12: false});
+            const nyTime = now.toLocaleTimeString('en-US', {timeZone: 'America/New_York', hour12: false});
+            const lonTime = now.toLocaleTimeString('en-GB', {timeZone: 'Europe/London', hour12: false});
+            const tokyoTime = now.toLocaleTimeString('ja-JP', {timeZone: 'Asia/Tokyo', hour12: false});
+            
+            document.getElementById('sf-time').textContent = sfTime;
+            document.getElementById('ny-time').textContent = nyTime;
+            document.getElementById('lon-time').textContent = lonTime;
+            document.getElementById('tokyo-time').textContent = tokyoTime;
+            document.getElementById('sf-time-2').textContent = sfTime;
+            document.getElementById('ny-time-2').textContent = nyTime;
+            document.getElementById('lon-time-2').textContent = lonTime;
+            document.getElementById('tokyo-time-2').textContent = tokyoTime;
         }
         
         updateTicker();
