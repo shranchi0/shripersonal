@@ -43,7 +43,7 @@
             border-top: 1px solid #000;
             border-bottom: 1px solid #000;
         }
-        .ticker-bottom {
+        .ticker-bottom-left {
             background-color: #f6e9d2;
             color: #000;
             white-space: nowrap;
@@ -53,8 +53,23 @@
             position: fixed;
             bottom: 72px;
             left: 0;
-            right: 0;
+            right: 50%;
             z-index: 1001;
+            border-top: 1px solid #000;
+            border-bottom: 1px solid #000;
+        }
+        .ticker-bottom-right {
+            background-color: #f6e9d2;
+            color: #000;
+            white-space: nowrap;
+            overflow: hidden;
+            box-sizing: border-box;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 72px;
+            left: 50%;
+            right: 0;
+            z-index: 999;
             border-top: 1px solid #000;
             border-bottom: 1px solid #000;
         }
@@ -150,9 +165,15 @@
         </div>
     </div>
 
-    <!-- Bottom ticker: left to right -->
-    <div class="ticker-bottom">
-        <div class="ticker-content-horizontal-reverse" id="ticker-bottom">
+    <!-- Bottom ticker: left to right (split into left and right halves) -->
+    <div class="ticker-bottom-left">
+        <div class="ticker-content-horizontal-reverse" id="ticker-bottom-left">
+            SF: <span class="sf-time">--:--:--</span> • NY: <span class="ny-time">--:--:--</span> • LON: <span class="lon-time">--:--:--</span> • TOKYO: <span class="tokyo-time">--:--:--</span> • SF: <span class="sf-time">--:--:--</span> • NY: <span class="ny-time">--:--:--</span> • LON: <span class="lon-time">--:--:--</span> • TOKYO: <span class="tokyo-time">--:--:--</span> • SF: <span class="sf-time">--:--:--</span> • NY: <span class="ny-time">--:--:--</span> • LON: <span class="lon-time">--:--:--</span> • TOKYO: <span class="tokyo-time">--:--:--</span> • SF: <span class="sf-time">--:--:--</span> • NY: <span class="ny-time">--:--:--</span> • LON: <span class="lon-time">--:--:--</span> • TOKYO: <span class="tokyo-time">--:--:--</span>
+        </div>
+    </div>
+    
+    <div class="ticker-bottom-right">
+        <div class="ticker-content-horizontal-reverse" id="ticker-bottom-right">
             SF: <span class="sf-time">--:--:--</span> • NY: <span class="ny-time">--:--:--</span> • LON: <span class="lon-time">--:--:--</span> • TOKYO: <span class="tokyo-time">--:--:--</span> • SF: <span class="sf-time">--:--:--</span> • NY: <span class="ny-time">--:--:--</span> • LON: <span class="lon-time">--:--:--</span> • TOKYO: <span class="tokyo-time">--:--:--</span> • SF: <span class="sf-time">--:--:--</span> • NY: <span class="ny-time">--:--:--</span> • LON: <span class="lon-time">--:--:--</span> • TOKYO: <span class="tokyo-time">--:--:--</span> • SF: <span class="sf-time">--:--:--</span> • NY: <span class="ny-time">--:--:--</span> • LON: <span class="lon-time">--:--:--</span> • TOKYO: <span class="tokyo-time">--:--:--</span>
         </div>
     </div>
