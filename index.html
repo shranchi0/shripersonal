@@ -56,7 +56,7 @@
 <body>
     <div class="ticker">
         <div class="ticker-content" id="ticker-content">
-            SF: <span id="sf-time">--:--:--</span> • NY: <span id="ny-time">--:--:--</span> • LON: <span id="lon-time">--:--:--</span> • TOKYO: <span id="tokyo-time">--:--:--</span> • SF: <span id="sf-time-2">--:--:--</span> • NY: <span id="ny-time-2">--:--:--</span> • LON: <span id="lon-time-2">--:--:--</span> • TOKYO: <span id="tokyo-time-2">--:--:--</span>
+            SF: <span id="sf-time">--:--:--</span> • NY: <span id="ny-time">--:--:--</span> • LON: <span id="lon-time">--:--:--</span> • TOKYO: <span id="tokyo-time">--:--:--</span> • SF: <span id="sf-time-2">--:--:--</span> • NY: <span id="ny-time-2">--:--:--</span> • LON: <span id="lon-time-2">--:--:--</span> • TOKYO: <span id="tokyo-time-2">--:--:--</span> • SF: <span id="sf-time-3">--:--:--</span> • NY: <span id="ny-time-3">--:--:--</span> • LON: <span id="lon-time-3">--:--:--</span> • TOKYO: <span id="tokyo-time-3">--:--:--</span> • SF: <span id="sf-time-4">--:--:--</span> • NY: <span id="ny-time-4">--:--:--</span> • LON: <span id="lon-time-4">--:--:--</span> • TOKYO: <span id="tokyo-time-4">--:--:--</span> • SF: <span id="sf-time-5">--:--:--</span> • NY: <span id="ny-time-5">--:--:--</span> • LON: <span id="lon-time-5">--:--:--</span> • TOKYO: <span id="tokyo-time-5">--:--:--</span> • SF: <span id="sf-time-6">--:--:--</span> • NY: <span id="ny-time-6">--:--:--</span> • LON: <span id="lon-time-6">--:--:--</span> • TOKYO: <span id="tokyo-time-6">--:--:--</span>
         </div>
     </div>
     
@@ -82,14 +82,13 @@
             const lonTime = now.toLocaleTimeString('en-GB', {timeZone: 'Europe/London', hour12: false});
             const tokyoTime = now.toLocaleTimeString('ja-JP', {timeZone: 'Asia/Tokyo', hour12: false});
             
-            document.getElementById('sf-time').textContent = sfTime;
-            document.getElementById('ny-time').textContent = nyTime;
-            document.getElementById('lon-time').textContent = lonTime;
-            document.getElementById('tokyo-time').textContent = tokyoTime;
-            document.getElementById('sf-time-2').textContent = sfTime;
-            document.getElementById('ny-time-2').textContent = nyTime;
-            document.getElementById('lon-time-2').textContent = lonTime;
-            document.getElementById('tokyo-time-2').textContent = tokyoTime;
+            for (let i = 1; i <= 6; i++) {
+                const suffix = i === 1 ? '' : `-${i}`;
+                document.getElementById(`sf-time${suffix}`).textContent = sfTime;
+                document.getElementById(`ny-time${suffix}`).textContent = nyTime;
+                document.getElementById(`lon-time${suffix}`).textContent = lonTime;
+                document.getElementById(`tokyo-time${suffix}`).textContent = tokyoTime;
+            }
         }
         
         updateTicker();
