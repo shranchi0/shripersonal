@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="description" content="Partner at Category Ventures">
     <title>Shri Kolanukuduru</title>
     <style>
@@ -13,6 +13,9 @@
             line-height: 1.5;
             height: 100vh;
             overflow: hidden;
+            -webkit-text-size-adjust: 100%;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
         .ticker-top-left {
             background-color: #f6e9d2;
@@ -150,6 +153,110 @@
         h1 {
             text-align: right;
         }
+        
+        /* Mobile responsive design */
+        @media screen and (max-width: 768px) {
+            /* Hide tickers on mobile to prevent overlap */
+            .ticker-top-left, .ticker-top-right, 
+            .ticker-bottom-left, .ticker-bottom-right,
+            .ticker-left, .ticker-right {
+                display: none;
+            }
+            
+            /* Adjust main content for mobile */
+            .main-content {
+                position: static;
+                transform: none;
+                padding: 20px;
+                width: 100%;
+                box-sizing: border-box;
+                height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            .content {
+                width: 100%;
+                max-width: 400px;
+            }
+            
+            /* Mobile typography */
+            body {
+                font-size: 14px;
+                line-height: 1.6;
+            }
+            
+            h1 {
+                font-size: 24px;
+                text-align: center;
+                margin-bottom: 20px;
+            }
+            
+            p {
+                margin-bottom: 16px;
+            }
+            
+            /* Touch-friendly links */
+            a {
+                display: inline-block;
+                padding: 8px 4px;
+                min-height: 44px;
+                line-height: 1.4;
+                text-decoration: underline;
+            }
+            
+            /* Navigation links spacing */
+            .content > a {
+                margin: 0 8px 8px 0;
+            }
+        }
+        
+        /* Tablet responsive design */
+        @media screen and (min-width: 769px) and (max-width: 1024px) {
+            /* Reduce ticker widths on tablets */
+            .ticker-left {
+                left: 40px;
+            }
+            .ticker-right {
+                right: 40px;
+            }
+            
+            .ticker-top-left, .ticker-bottom-left {
+                right: 55%;
+            }
+            .ticker-top-right, .ticker-bottom-right {
+                left: 45%;
+            }
+            
+            /* Adjust positioning */
+            .ticker-top-left, .ticker-top-right {
+                top: 50px;
+            }
+            .ticker-bottom-left, .ticker-bottom-right {
+                bottom: 50px;
+            }
+        }
+        
+        /* Performance optimizations */
+        .ticker-content-horizontal,
+        .ticker-content-horizontal-reverse,
+        .ticker-content-vertical,
+        .ticker-content-vertical-reverse {
+            will-change: transform;
+            backface-visibility: hidden;
+            perspective: 1000px;
+        }
+        
+        /* Reduce motion for users who prefer it */
+        @media (prefers-reduced-motion: reduce) {
+            .ticker-content-horizontal,
+            .ticker-content-horizontal-reverse,
+            .ticker-content-vertical,
+            .ticker-content-vertical-reverse {
+                animation: none;
+            }
+        }
     </style>
 </head>
 <body>
@@ -226,8 +333,32 @@
             tokyoElements.forEach(el => el.textContent = tokyoTime);
         }
         
-        updateTicker();
-        setInterval(updateTicker, 1000);
+        // Performance optimization: only update tickers if they're visible
+        function shouldUpdateTickers() {
+            return window.innerWidth > 768;
+        }
+        
+        // Reduce frequency on mobile devices and when page is not visible
+        function getUpdateInterval() {
+            if (!shouldUpdateTickers()) return 5000; // 5 seconds on mobile (hidden anyway)
+            if (document.hidden) return 5000; // 5 seconds when tab is not visible
+            return 1000; // 1 second when active
+        }
+        
+        let tickerInterval;
+        
+        function startTicker() {
+            if (tickerInterval) clearInterval(tickerInterval);
+            updateTicker();
+            tickerInterval = setInterval(updateTicker, getUpdateInterval());
+        }
+        
+        // Handle visibility changes and resize events
+        document.addEventListener('visibilitychange', startTicker);
+        window.addEventListener('resize', startTicker);
+        
+        // Initial start
+        startTicker();
     </script>
 </body>
 </html>
